@@ -23,14 +23,7 @@
             var GosTvKey = $('#txtgostvkey').val();
             var TimeStamp = $('#txttimestamp').val();
             
-            /*--
-            if (String(UnitNbr).length == 0 || String(Nota).length == 0) {
-                errorAlert('Info Transaction', ' El Numero de Unidad y la Nota es Requerida');
-                return;
-            }
-            --*/
-
-            var param = { 'UnitNbr': UnitNbr, 'Action': Action, 'Nota': Nota };
+            var param = { 'GateId': GateId, 'StageId': StageId, 'LaneId': LaneId, 'TruckLicenseNbr': TruckLicenseNbr, 'TruckingCoId': TruckingCoId, 'DriverLicenseNbr': DriverLicenseNbr, 'GosTvKey': GosTvKey, 'TimeStamp': TimeStamp };
 
             var url = '../api/HpuDph';
 
