@@ -13,16 +13,16 @@ namespace WebApiConduceSinPapeles.Services
 
 
         /// <summary>
-        /// 
+        /// Save Transaction Log
         /// </summary>
-        ///
-        
-        private void executeTransaction(String UnitNbr, String Action, String Nota, String Estatus, String EstatusNavis, String MensajeeNavis)
+        /// <param name="Request"></param>
+        /// <param name="Response"></param>
+        /// <param name="Estatus"></param>
+        public static void saveTransactionLog(String Request, String Response, String Estatus)
         {
 
             try
             {
-
 
                 using (SqlConnection connetion = new SqlConnection(ConnectionAndSettings.ConnectionString))
                 {
@@ -38,31 +38,14 @@ namespace WebApiConduceSinPapeles.Services
 
                         _DbCommand.CommandType = CommandType.StoredProcedure;
 
-                        _DbCommand.CommandText = "[dbo].[CreateTransaccionWebApiHPUDPH]";
+                        _DbCommand.CommandText = "dbo.CreateTransaccionWebApiConduceSinPapel";
 
-                        _DbCommand.Parameters.Add(new SqlParameter() { ParameterName = "@UnitNbr", SqlDbType = SqlDbType.VarChar, Value = UnitNbr });
+                        _DbCommand.Parameters.Add(new SqlParameter() { ParameterName = "@Request", SqlDbType = SqlDbType.VarChar, Value = Request });
 
-                        _DbCommand.Parameters.Add(new SqlParameter() { ParameterName = "@Action", SqlDbType = SqlDbType.VarChar, Value = Action });
-
-                        _DbCommand.Parameters.Add(new SqlParameter() { ParameterName = "@Nota", SqlDbType = SqlDbType.VarChar, Value = Nota });
+                        _DbCommand.Parameters.Add(new SqlParameter() { ParameterName = "@Response", SqlDbType = SqlDbType.VarChar, Value = Response });
 
                         _DbCommand.Parameters.Add(new SqlParameter() { ParameterName = "@Estatus", SqlDbType = SqlDbType.VarChar, Value = Estatus });
-
-                        _DbCommand.Parameters.Add(new SqlParameter() { ParameterName = "@EstatusNavis", SqlDbType = SqlDbType.VarChar, Value = EstatusNavis });
-
-                        _DbCommand.Parameters.Add(new SqlParameter() { ParameterName = "@MensajeeNavis", SqlDbType = SqlDbType.VarChar, Value = MensajeeNavis });
-
-                        if (Estatus.Equals("COMPLETADO"))
-                        {
-                            _DbCommand.Parameters.Add(new SqlParameter() { ParameterName = "@FechaActualizacion", SqlDbType = SqlDbType.DateTime, Value = DateTime.Now });
-
-                        }
-                        else
-                        {
-                            _DbCommand.Parameters.Add(new SqlParameter() { ParameterName = "@FechaActualizacion", SqlDbType = SqlDbType.DateTime, Value = DBNull.Value });
-
-                        }
-
+                                             
                         _DbCommand.ExecuteNonQuery();
                     }
 
