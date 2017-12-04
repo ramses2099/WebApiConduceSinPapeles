@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewBag.Title = "UI Test Conduce sin Papeles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script lang="en" type="text/javascript">
+
+    //var url = 'http://portalhit.com.do:52780/api/HpuDph';
+
+    $(document).ready(function () {
+
+
+        $('#btnSend').click(function () {
+
+            var GateId = $('#txtgateid').val();
+            var StageId = $('#txtstageid').val();
+            var LaneId = $('#txtlaneid').val();
+            var TruckLicenseNbr = $('#txttrucklicensenbr').val();
+            var TruckingCoId = $('#txttruckingcoid').val();
+            var DriverLicenseNbr = $('#txtdriverlicensenbr').val();
+            var GosTvKey = $('#txtgostvkey').val();
+            var TimeStamp = $('#txttimestamp').val();
+            
+            /*--
+            if (String(UnitNbr).length == 0 || String(Nota).length == 0) {
+                errorAlert('Info Transaction', ' El Numero de Unidad y la Nota es Requerida');
+                return;
+            }
+            --*/
+
+            var param = { 'UnitNbr': UnitNbr, 'Action': Action, 'Nota': Nota };
+
+            var url = '../api/HpuDph';
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(param),
+                url: url
+            }).done(function (data) {
+                var status = data.Status;
+                var message = data.Message;
+
+                if (status == 'OK') {
+                    successAlert('Info Transaction', 'Transaction Successfull ' + message);
+                }
+                //
+                $('#txtUnitNbr').val('');
+                $('#ddlAction').val('');
+                $('#txtNota').val('');
+
+            }).error(function (XMLHttpRequest, textStatus, erroThrown) {
+
+                if (textStatus == "error") {
+                    errorAlert('Info Transaction', ' ' + XMLHttpRequest.responseText);
+                }
+
+            });
+
+
+        });
+
+        return false;
+    });
+
+
+</script>
+
+<br />
+
+<div class="row">
+    <div class="col-lg-12">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>UI Test Create Truck Visit</legend>
+
+            <!-- Text input-->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txtgateid">Gate Id:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtgateid" value="GATE01" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txtstageid">Stage Id:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtstageid" value="pre gate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txtlaneid">Lane Id:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtlaneid" value="CE1PG" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txttrucklicensenbr">License Nbr:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txttrucklicensenbr" placeholder="License Nbr" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txttruckingcoid">Trucking Co Id:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txttruckingcoid" placeholder="Trucking Co Id" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txtdriverlicensenbr">Drive License:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtdriverlicensenbr" placeholder="Drive License Nbr" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txtgostvkey">Gos Tv Key:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtgostvkey" placeholder="Gos Tv Key" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="textinput">Time Stamp:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txttimestamp" placeholder="Time Stamp" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <div class="pull-right">
+                                <button id="btnCancel" type="button" class="btn btn-default">Cancel</button>
+                                <button id="btnSend" type="button" class="btn btn-primary">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
