@@ -121,8 +121,16 @@ namespace WebApiConduceSinPapeles.Services
 
             return rs;
         }
-        
 
+        /// <summary>
+        /// SUBMIT TRANSACTION
+        /// </summary>
+        /// <param name="TvKey"></param>
+        /// <param name="GosTvKey"></param>
+        /// <param name="EqId"></param>
+        /// <param name="IsoType"></param>
+        /// <param name="OnChassisId"></param>
+        /// <returns></returns>
         public string executeGenericInvokeSUBMIT_TRANSACTION(String TvKey, String GosTvKey, String EqId, String IsoType, String OnChassisId)
         {
 

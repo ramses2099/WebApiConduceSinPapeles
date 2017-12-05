@@ -15,8 +15,7 @@ namespace WebApiConduceSinPapeles.Controllers
 {
     public class GateTransactionsController : ApiController
     {
-        // POST: api/GateTransactions
-
+        //POST: api/Create_Truck_Visit
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult Create_Truck_Visit([FromBody]DataParamTruckVisit param)
@@ -53,7 +52,8 @@ namespace WebApiConduceSinPapeles.Controllers
             
             return Ok(response);
         }
-        //
+        
+        //POST: api/Create_Truck_Visit
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult Submit_Transaction([FromBody]DataParamSubmitTransaction param)
@@ -90,7 +90,8 @@ namespace WebApiConduceSinPapeles.Controllers
 
             return Ok(response);
         }
-        //
+
+        //POST: api/Stage_Done
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult Stage_Done([FromBody]DataParamTruckVisit param)
