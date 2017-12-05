@@ -30,11 +30,10 @@ namespace WebApiConduceSinPapeles.Services
                                                     <submit-transaction>
                                                         <gate-id>{0}</gate-id>
                                                         <stage-id>{1}</stage-id>
-                                                        <lane-id>{3}</lane-id>
-                                                        <truck-visit tv-key=""{4}""/>
+                                                        <truck-visit tv-key=""{2}""/>
                                                         <truck-transaction tran-type=""DI"">
-                                                            <container eqid = ""{5}"" type=""{6}"" on-chassis-id=""{7}""/>
-                                                            <chassis eqid = ""{8}"" type=""{9}""/>
+                                                            <container eqid = ""{3}"" type=""{4}"" on-chassis-id=""{5}""/>
+                                                            <chassis eqid = ""{6}"" type=""{7}""/>
                                                         </truck-transaction>
                                                     </submit-transaction>
                                                 </gate>";
@@ -43,8 +42,7 @@ namespace WebApiConduceSinPapeles.Services
 	                                            <stage-done>
 		                                            <gate-id>{0}</gate-id>
 		                                            <stage-id>{1}</stage-id>
-		                                            <lane-id>{2}</lane-id>
-		                                            <truck-visit gos-tv-key=""{3}"" tv-key=""{4}""/>
+		                                            <truck-visit tv-key=""{2}"" gos-tv-key=""{4}""/>
 	                                            </stage-done>
                                           </gate>";
 

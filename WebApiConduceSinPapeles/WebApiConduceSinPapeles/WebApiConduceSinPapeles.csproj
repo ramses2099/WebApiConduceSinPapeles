@@ -254,6 +254,7 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DataParamSubmitTransaction.cs" />
     <Compile Include="Models\DataParamTruckVisit.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ResponseMsg.cs" />
