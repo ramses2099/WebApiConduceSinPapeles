@@ -29,7 +29,7 @@
                 'BatNbr':BatNbr,'TimeStamp': TimeStamp
             };
 
-            var url = '../api/GateTransactions';
+            var url = '../api/Create_Truck_Visit';
 
             $.ajax({
                 type: "POST",
@@ -41,7 +41,9 @@
                 var message = data.Message;
 
                 if (status == 'OK') {
-                    successAlert('Info Transaction', 'Transaction Successfull ' + message);
+                    $('#txttvkeyresult').val(message);
+                    //
+                    //successAlert('Info Transaction', 'Transaction Successfull ' + message);
                 }
                 //
                 /*-
@@ -90,6 +92,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txttvkeyresult">Tv-Key:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txttvkeyresult" value="" class="form-control">
+                        </div>
+                    </div>
+                </div>
             </div>
             <br />
             <div class="row">
@@ -97,7 +107,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label" for="txtstageid">Stage Id:</label>
                         <div class="col-lg-6">
-                            <input type="text" id="txtstageid" value="pre gate" class="form-control">
+                            <input type="text" id="txtstageid" value="gatein" class="form-control">
                         </div>
                     </div>
                 </div>

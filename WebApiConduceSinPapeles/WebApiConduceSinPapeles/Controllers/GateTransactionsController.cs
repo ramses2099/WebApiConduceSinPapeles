@@ -18,7 +18,8 @@ namespace WebApiConduceSinPapeles.Controllers
         // POST: api/GateTransactions
 
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public IHttpActionResult Post([FromBody]DataParamTruckVisit param)
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult Create_Truck_Visit([FromBody]DataParamTruckVisit param)
         {
             
             String result = String.Empty;
@@ -52,7 +53,80 @@ namespace WebApiConduceSinPapeles.Controllers
             
             return Ok(response);
         }
-        
+        //
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult Submit_Transaction([FromBody]DataParamTruckVisit param)
+        {
+
+            String result = String.Empty;
+            ResponseMsg response = null;
+            try
+            {
+                NavisConnect service = new NavisConnect();
+                result = service.executeGenericInvokeCREATE_TRUCK_VISIT(param.GateId, param.StageId, param.LaneId, param.TruckingLicenseNbr, param.TruckingCoId, param.DriverLicenseNbr, param.GosTvKey, param.BatNbr, param.TimesTamp);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+            String[] arg = result.Split('|');
+
+            if (arg.Length == 2)
+            {
+
+                //
+                if (arg[0].Equals("OK"))
+                {
+                    response = new ResponseMsg() { Status = "OK", Codigo = "0", Message = arg[1] };
+                }
+                else
+                {
+                    response = new ResponseMsg() { Status = "OK", Codigo = "1", Message = arg[1] };
+                }
+
+            }
+
+            return Ok(response);
+        }
+        //
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult Stage_Done([FromBody]DataParamTruckVisit param)
+        {
+
+            String result = String.Empty;
+            ResponseMsg response = null;
+            try
+            {
+                NavisConnect service = new NavisConnect();
+                result = service.executeGenericInvokeCREATE_TRUCK_VISIT(param.GateId, param.StageId, param.LaneId, param.TruckingLicenseNbr, param.TruckingCoId, param.DriverLicenseNbr, param.GosTvKey, param.BatNbr, param.TimesTamp);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+            String[] arg = result.Split('|');
+
+            if (arg.Length == 2)
+            {
+
+                //
+                if (arg[0].Equals("OK"))
+                {
+                    response = new ResponseMsg() { Status = "OK", Codigo = "0", Message = arg[1] };
+                }
+                else
+                {
+                    response = new ResponseMsg() { Status = "OK", Codigo = "1", Message = arg[1] };
+                }
+
+            }
+
+            return Ok(response);
+        }
 
 
     }
