@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using WebApiConduceSinPapeles.ArgoBasicService;
 using System.Text;
+using System.Xml;
+using Newtonsoft.Json;
 
 namespace WebApiConduceSinPapeles.Services
 {
@@ -70,12 +72,24 @@ namespace WebApiConduceSinPapeles.Services
                     message.AppendLine(mType.Message);
                 }
 
+                // To convert an XML node contained in string xml into a JSON string   
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(response.genericInvokeResponse1.commonResponse.QueryResults[0].Result);
+                
+                Response = JsonConvert.SerializeXmlNode(doc);
+                
+                //XmlNodeList elemList = doc.GetElementsByTagName("truck-visit");
+
+                //string value = elemList[0].InnerXml;
+
+                String TvKey = doc.GetElementsByTagName("truck-visit").Item(0).Attributes["tv-key"].Value;
+              
                 string msg = string.Empty;
 
                 //Status                
                 if (ResponEstatus.OK.Equals(status))
                 {
-                    rs = String.Format("OK|{0}", msg);
+                    rs = String.Format("OK|{0}", TvKey);
 
                     DbServices.saveTransactionLog(Request, Response, "OK");                    
                 }

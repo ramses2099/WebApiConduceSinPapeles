@@ -17,15 +17,19 @@
             var GateId = $('#txtgateid').val();
             var StageId = $('#txtstageid').val();
             var LaneId = $('#txtlaneid').val();
-            var TruckLicenseNbr = $('#txttrucklicensenbr').val();
+            var TruckingLicenseNbr = $('#txttrucklicensenbr').val();
             var TruckingCoId = $('#txttruckingcoid').val();
             var DriverLicenseNbr = $('#txtdriverlicensenbr').val();
             var GosTvKey = $('#txtgostvkey').val();
+            var BatNbr = $('#txtbatnbr').val();
             var TimeStamp = $('#txttimestamp').val();
-            
-            var param = { 'GateId': GateId, 'StageId': StageId, 'LaneId': LaneId, 'TruckLicenseNbr': TruckLicenseNbr, 'TruckingCoId': TruckingCoId, 'DriverLicenseNbr': DriverLicenseNbr, 'GosTvKey': GosTvKey, 'TimeStamp': TimeStamp };
 
-            var url = '../api/HpuDph';
+            var param = {
+                'GateId': GateId, 'StageId': StageId, 'LaneId': LaneId, 'TruckingLicenseNbr': TruckingLicenseNbr, 'TruckingCoId': TruckingCoId, 'DriverLicenseNbr': DriverLicenseNbr, 'GosTvKey': GosTvKey,
+                'BatNbr':BatNbr,'TimeStamp': TimeStamp
+            };
+
+            var url = '../api/GateTransactions';
 
             $.ajax({
                 type: "POST",
@@ -40,10 +44,11 @@
                     successAlert('Info Transaction', 'Transaction Successfull ' + message);
                 }
                 //
+                /*-
                 $('#txtUnitNbr').val('');
                 $('#ddlAction').val('');
                 $('#txtNota').val('');
-
+                -*/
             }).error(function (XMLHttpRequest, textStatus, erroThrown) {
 
                 if (textStatus == "error") {
@@ -85,6 +90,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <br />
+            <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="col-lg-3 control-label" for="txtstageid">Stage Id:</label>
@@ -103,18 +111,18 @@
                             <input type="text" id="txtlaneid" value="CE1PG" class="form-control">
                         </div>
                     </div>
-                </div>
+                </div>               
+            </div>
+            <br/>
+            <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" for="txttrucklicensenbr">License Nbr:</label>
+                        <label class="col-lg-4 control-label" for="txttrucklicensenbr">Truck License Nbr:</label>
                         <div class="col-lg-6">
-                            <input type="text" id="txttrucklicensenbr" placeholder="License Nbr" class="form-control">
+                            <input type="text" id="txttrucklicensenbr" placeholder="Truck License Nbr" class="form-control">
                         </div>
                     </div>
                 </div>
-            </div>
-            <br />
-            <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="col-lg-3 control-label" for="txttruckingcoid">Trucking Co Id:</label>
@@ -123,6 +131,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <br />
+            <div class="row">               
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="col-lg-3 control-label" for="txtdriverlicensenbr">Drive License:</label>
@@ -130,9 +141,9 @@
                             <input type="text" id="txtdriverlicensenbr" placeholder="Drive License Nbr" class="form-control">
                         </div>
                     </div>
-                </div>
+                </div>              
             </div>
-            <br/>
+            <br />
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
@@ -144,6 +155,17 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txtbatnbr">Bat Nbr:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtbatnbr" placeholder="Bat Nbr" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
                         <label class="col-lg-3 control-label" for="textinput">Time Stamp:</label>
                         <div class="col-lg-6">
                             <input type="text" id="txttimestamp" placeholder="Time Stamp" class="form-control">
@@ -152,7 +174,6 @@
                 </div>
             </div>
             <br />
-
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">

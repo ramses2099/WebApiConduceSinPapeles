@@ -88,3 +88,6 @@ C:\Users\jose.encarnacion\Source\Repos\WebApiConduceSinPapeles\WebApiConduceSinP
 C:\Users\jose.encarnacion\Source\Repos\WebApiConduceSinPapeles\WebApiConduceSinPapeles\WebApiConduceSinPapeles\obj\Debug\WebApiConduceSinPapeles.csprojResolveAssemblyReference.cache
 C:\Users\jose.encarnacion\Source\Repos\WebApiConduceSinPapeles\WebApiConduceSinPapeles\WebApiConduceSinPapeles\obj\Debug\WebApiConduceSinPapeles.dll
 C:\Users\jose.encarnacion\Source\Repos\WebApiConduceSinPapeles\WebApiConduceSinPapeles\WebApiConduceSinPapeles\obj\Debug\WebApiConduceSinPapeles.pdb
+C:\Users\jose.encarnacion\Source\Repos\WebApiConduceSinPapeles\WebApiConduceSinPapeles\WebApiConduceSinPapeles\bin\System.Web.Cors.dll
+C:\Users\jose.encarnacion\Source\Repos\WebApiConduceSinPapeles\WebApiConduceSinPapeles\WebApiConduceSinPapeles\bin\System.Web.Http.Cors.dll
+C:\Users\jose.encarnacion\Source\Repos\WebApiConduceSinPapeles\WebApiConduceSinPapeles\WebApiConduceSinPapeles\bin\System.Web.Http.Cors.xml
