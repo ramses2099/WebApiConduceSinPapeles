@@ -29,11 +29,11 @@ namespace WebApiConduceSinPapeles.Services
         /// <param name="BatNbr"></param>
         /// <param name="TimesTamp"></param>
         /// <returns>String Truck Visit Id</returns>
-        public string executeGenericInvokeCREATE_TRUCK_VISIT(String GateId, String StageId, String LaneId, String TruckingLicenseNbr, String TruckingCoId, String DriveLicenseNbr, String GosTvKey, String BatNbr, String TimesTamp)
+        public string executeGenericInvokeCREATE_TRUCK_VISIT(String GateId, String StageId, String TruckingLicenseNbr, String TruckingCoId, String DriveLicenseNbr, String GosTvKey, String BatNbr, String TimesTamp)
         {
 
-            string myXml = string.Format(ConnectionAndSettings.CREATE_TRUCK_VISIT, GateId, StageId, LaneId, TruckingLicenseNbr, TruckingCoId, DriveLicenseNbr, GosTvKey, BatNbr, TimesTamp);
-            String Request = string.Format("GateId:{0},StageId:{1},LaneId:{2},TruckingLicenseNbr:{3},TruckingCoId:{4},DriveLicenseNbr:{5},GosTvKey:{6},BatNbr:{7},TimesTamp:{8}", GateId, StageId, LaneId, TruckingLicenseNbr, TruckingCoId, DriveLicenseNbr, GosTvKey, BatNbr, TimesTamp);
+            string myXml = string.Format(ConnectionAndSettings.CREATE_TRUCK_VISIT, GateId, StageId, TruckingLicenseNbr, TruckingCoId, DriveLicenseNbr, GosTvKey, BatNbr, TimesTamp);
+            String Request = string.Format("GateId:{0},StageId:{1},TruckingLicenseNbr:{2},TruckingCoId:{3},DriveLicenseNbr:{4},GosTvKey:{5},BatNbr:{6},TimesTamp:{7}", GateId, StageId, TruckingLicenseNbr, TruckingCoId, DriveLicenseNbr, GosTvKey, BatNbr, TimesTamp);
             String Response = string.Empty;
             string rs = string.Empty;
 
@@ -131,11 +131,11 @@ namespace WebApiConduceSinPapeles.Services
         /// <param name="IsoType"></param>
         /// <param name="OnChassisId"></param>
         /// <returns></returns>
-        public string executeGenericInvokeSUBMIT_TRANSACTION(String TvKey, String GosTvKey, String EqId, String IsoType, String OnChassisId)
+        public string executeGenericInvokeSUBMIT_TRANSACTION(String GateId, String StageId, String TvKey, String EqId, String IsoType, String OnChassisId)
         {
 
-            string myXml = string.Format(ConnectionAndSettings.SUBMIT_TRANSACTION, TvKey, GosTvKey, EqId, IsoType, OnChassisId);
-            String Request = string.Format("TvKey:{0},GosTvKey:{1},EqId:{2},IsoType:{3},OnChassisId:{4},ChassisEqId:{5},ChasssisIsoType:{6}", TvKey, GosTvKey, EqId, IsoType, OnChassisId, OnChassisId,IsoType);
+            string myXml = string.Format(ConnectionAndSettings.SUBMIT_TRANSACTION, GateId, StageId, TvKey,EqId, IsoType, OnChassisId, OnChassisId, IsoType);
+            String Request = string.Format("GateId:{0},StageId:{1},TvKey:{2},EqId:{3},IsoType:{4},OnChassisId:{5},ChassisEqId:{6},ChasssisIsoType:{7}", GateId, StageId, TvKey, EqId, IsoType, OnChassisId, OnChassisId, IsoType);
             String Response = string.Empty;
             string rs = string.Empty;
 
@@ -225,11 +225,11 @@ namespace WebApiConduceSinPapeles.Services
         }
 
 
-        public string executeGenericInvokeSTAGE_DONE(String GateId, String StageId, String LaneId, String TruckingLicenseNbr, String TruckingCoId, String DriveLicenseNbr, String GosTvKey, String BatNbr, String TimesTamp)
+        public string executeGenericInvokeSTAGE_DONE(String GateId, String StageId, String TvKey, String GosTvKey)
         {
 
-            string myXml = string.Format(ConnectionAndSettings.CREATE_TRUCK_VISIT, GateId, StageId, LaneId, TruckingLicenseNbr, TruckingCoId, DriveLicenseNbr, GosTvKey, BatNbr, TimesTamp);
-            String Request = string.Format("GateId:{0},StageId:{1},LaneId:{2},TruckingLicenseNbr:{3},TruckingCoId:{4},DriveLicenseNbr:{5},GosTvKey:{6},BatNbr:{7},TimesTamp:{8}", GateId, StageId, LaneId, TruckingLicenseNbr, TruckingCoId, DriveLicenseNbr, GosTvKey, BatNbr, TimesTamp);
+            string myXml = string.Format(ConnectionAndSettings.STAGE_DONE, GateId, StageId, TvKey, GosTvKey);
+            String Request = string.Format("GateId:{0},StageId:{1},TvKey:{2},GosTvKey:{3}", GateId, StageId, GosTvKey, GosTvKey);
             String Response = string.Empty;
             string rs = string.Empty;
 
@@ -278,7 +278,7 @@ namespace WebApiConduceSinPapeles.Services
 
                 //string value = elemList[0].InnerXml;
 
-                String TvKey = doc.GetElementsByTagName("truck-visit").Item(0).Attributes["tv-key"].Value;
+                //String TvKey = doc.GetElementsByTagName("truck-visit").Item(0).Attributes["tv-key"].Value;
 
                 string msg = string.Empty;
 

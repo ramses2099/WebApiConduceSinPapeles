@@ -10,7 +10,6 @@ namespace WebApiConduceSinPapeles.Models
         //GateId, StageId, LaneId, TruckingLicenseNbr, TruckingCoId, DriveLicenseNbr, GosTvKey, BatNbr, TimesTamp
         public String GateId { get; set; }
         public String StageId { get; set; }
-        public String LaneId { get; set; }
         public String TruckingLicenseNbr { get; set; }
         public String TruckingCoId { get; set; }
         public String DriverLicenseNbr { get; set; }

@@ -16,7 +16,6 @@
 
             var GateId = $('#txtgateid').val();
             var StageId = $('#txtstageid').val();
-            var LaneId = $('#txtlaneid').val();
             var TruckingLicenseNbr = $('#txttrucklicensenbr').val();
             var TruckingCoId = $('#txttruckingcoid').val();
             var DriverLicenseNbr = $('#txtdriverlicensenbr').val();
@@ -25,11 +24,11 @@
             var TimeStamp = $('#txttimestamp').val();
 
             var param = {
-                'GateId': GateId, 'StageId': StageId, 'LaneId': LaneId, 'TruckingLicenseNbr': TruckingLicenseNbr, 'TruckingCoId': TruckingCoId, 'DriverLicenseNbr': DriverLicenseNbr, 'GosTvKey': GosTvKey,
+                'GateId': GateId, 'StageId': StageId,'TruckingLicenseNbr': TruckingLicenseNbr, 'TruckingCoId': TruckingCoId, 'DriverLicenseNbr': DriverLicenseNbr, 'GosTvKey': GosTvKey,
                 'BatNbr':BatNbr,'TimeStamp': TimeStamp
             };
 
-            var url = '../api/Create_Truck_Visit';
+            var url = '../api/GateTransactions/Create_Truck_Visit';
 
             $.ajax({
                 type: "POST",
@@ -61,6 +60,91 @@
 
 
         });
+        //        
+        $('#btnSendTransaction').click(function () {
+            
+            var GateId = $('#txtstgateid').val();
+            var StageId = $('#txtststageid').val();
+            var TvKey = $('#txtsttvkey').val();
+            var EqId = $('#txtsteqid').val();
+            var IsoType = $('#txtstisotype').val();
+            var OnChassisId = $('#txtstchassisid').val();
+            
+            
+            var param = {
+                'GateId': GateId, 'StageId': StageId, 'TvKey': TvKey, 'EqId': EqId, 'IsoType': IsoType, 'OnChassisId': OnChassisId
+            };
+
+            var url = '../api/GateTransactions/Submit_Transaction';
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(param),
+                url: url
+            }).done(function (data) {
+                var status = data.Status;
+                var message = data.Message;
+
+                if (status == 'OK') {
+                   // $('#txttvkeyresult').val(message);
+                    //
+                    //successAlert('Info Transaction', 'Transaction Successfull ' + message);
+                }
+                //
+               
+            }).error(function (XMLHttpRequest, textStatus, erroThrown) {
+
+                if (textStatus == "error") {
+                    errorAlert('Info Transaction', ' ' + XMLHttpRequest.responseText);
+                }
+
+            });
+
+
+        });
+        //
+        $('#btnStageDone').click(function () {
+
+            var GateId = $('#txtstdgateid').val();
+            var StageId = $('#txtstdstageid').val();
+            var TvKey = $('#txtstdtvkey').val();
+            var GosTvKey = $('#txtstdgostvkey').val();
+            
+            var param = {
+                'GateId': GateId, 'StageId': StageId, 'TvKey': TvKey, 'GosTvKey': GosTvKey
+            };
+
+            var url = '../api/GateTransactions/Stage_Done';
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(param),
+                url: url
+            }).done(function (data) {
+                var status = data.Status;
+                var message = data.Message;
+
+                if (status == 'OK') {
+                    $('#txtstdtrannbr').val(message);
+                    //
+                    //successAlert('Info Transaction', 'Transaction Successfull ' + message);
+                }
+                //
+
+            }).error(function (XMLHttpRequest, textStatus, erroThrown) {
+
+                if (textStatus == "error") {
+                    errorAlert('Info Transaction', ' ' + XMLHttpRequest.responseText);
+                }
+
+            });
+
+
+        });
+        //
+
 
         return false;
     });
@@ -107,23 +191,12 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label" for="txtstageid">Stage Id:</label>
                         <div class="col-lg-6">
-                            <input type="text" id="txtstageid" value="gatein" class="form-control">
+                            <input type="text" id="txtstageid" value="pre gate" class="form-control">
                         </div>
                     </div>
                 </div>
             </div>
             <br />
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" for="txtlaneid">Lane Id:</label>
-                        <div class="col-lg-6">
-                            <input type="text" id="txtlaneid" value="CE1PG" class="form-control">
-                        </div>
-                    </div>
-                </div>               
-            </div>
-            <br/>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
@@ -213,17 +286,20 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" for="txtgateid">Gate Id:</label>
+                        <label class="col-lg-3 control-label" for="txtstgateid">Gate Id:</label>
                         <div class="col-lg-6">
-                            <input type="text" id="txtgateid" value="GATE01" class="form-control">
+                            <input type="text" id="txtstgateid" value="GATE01" class="form-control">
                         </div>
                     </div>
-                </div>
+                </div>               
+            </div>
+            <br />
+            <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" for="txttvkeyresult">Tv-Key:</label>
+                        <label class="col-lg-3 control-label" for="txtststageid">Stage Id:</label>
                         <div class="col-lg-6">
-                            <input type="text" id="txttvkeyresult" value="" class="form-control">
+                            <input type="text" id="txtststageid" value="pre gate" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -232,10 +308,15 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" for="txtstageid">Stage Id:</label>
+                        <label class="col-lg-4 control-label" for="txtsttvkey">Truck Tv-Key:</label>
                         <div class="col-lg-6">
-                            <input type="text" id="txtstageid" value="gatein" class="form-control">
+                            <input type="text" id="txtsttvkey" placeholder="Truck Tv-Key" class="form-control">
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                       
                     </div>
                 </div>
             </div>
@@ -243,69 +324,25 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" for="txtlaneid">Lane Id:</label>
+                        <label class="col-lg-3 control-label" for="txtsteqid">EqId:</label>
                         <div class="col-lg-6">
-                            <input type="text" id="txtlaneid" value="CE1PG" class="form-control">
+                            <input type="text" id="txtsteqid" placeholder="EqId" class="form-control">
                         </div>
                     </div>
                 </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                     <div class="form-group">
-                        <label class="col-lg-4 control-label" for="txttrucklicensenbr">Truck License Nbr:</label>
+                        <label class="col-lg-6 control-label" for="txtstisotype">Iso type:</label>
                         <div class="col-lg-6">
-                            <input type="text" id="txttrucklicensenbr" placeholder="Truck License Nbr" class="form-control">
+                            <input type="text" id="txtstisotype" placeholder="Iso Type" class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" for="txttruckingcoid">Trucking Co Id:</label>
+                        <label class="col-lg-6 control-label" for="txtstchassisid">Chassis Id:</label>
                         <div class="col-lg-6">
-                            <input type="text" id="txttruckingcoid" placeholder="Trucking Co Id" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" for="txtdriverlicensenbr">Drive License:</label>
-                        <div class="col-lg-6">
-                            <input type="text" id="txtdriverlicensenbr" placeholder="Drive License Nbr" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" for="txtgostvkey">Gos Tv Key:</label>
-                        <div class="col-lg-6">
-                            <input type="text" id="txtgostvkey" placeholder="Gos Tv Key" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" for="txtbatnbr">Bat Nbr:</label>
-                        <div class="col-lg-6">
-                            <input type="text" id="txtbatnbr" placeholder="Bat Nbr" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" for="textinput">Time Stamp:</label>
-                        <div class="col-lg-6">
-                            <input type="text" id="txttimestamp" placeholder="Time Stamp" class="form-control">
+                            <input type="text" id="txtstchassisid" placeholder="Chassis Id" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -317,7 +354,82 @@
                         <div class="col-lg-4">
                             <div class="pull-right">
                                 <button id="btnCancel" type="button" class="btn btn-default">Cancel</button>
-                                <button id="btnSend" type="button" class="btn btn-primary">Send</button>
+                                <button id="btnSendTransaction" type="button" class="btn btn-primary">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>UI Test Stage Done</legend>
+
+            <!-- Text input-->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txtstgateid">Gate Id:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtstdgateid" value="GATE01" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txtstdtrannbr">Tran nbr:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtstdtrannbr" value="" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="txtstdstageid">Stage Id:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtstdstageid" value="pre gate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label" for="txtstdtvkey">Truck Tv-Key:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtstdtvkey" placeholder="Truck Tv-Key" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label" for="txtstdgostvkey">Gos Tv-Key:</label>
+                        <div class="col-lg-6">
+                            <input type="text" id="txtstdgostvkey" placeholder="Truck Gos Tv-Key" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <div class="pull-right">
+                                <button id="btnCancel" type="button" class="btn btn-default">Cancel</button>
+                                <button id="btnStageDone" type="button" class="btn btn-primary">Send</button>
                             </div>
                         </div>
                     </div>

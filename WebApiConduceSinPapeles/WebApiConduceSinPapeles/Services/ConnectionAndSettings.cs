@@ -18,11 +18,10 @@ namespace WebApiConduceSinPapeles.Services
 	                                                <create-truck-visit>
 		                                                <gate-id>{0}</gate-id>
 		                                                <stage-id>{1}</stage-id>
-		                                                <lane-id>{2}</lane-id>
-		                                                <truck license-nbr=""{3}"" trucking-co-id=""{4}""/>
-		                                                <driver license-nbr=""{5}""/>
-		                                                <truck-visit gos-tv-key=""{6}"" bat-nbr=""{7}""/>
-		                                                <timestamp>{8}</timestamp>
+		                                                <truck license-nbr=""{2}"" trucking-co-id=""{3}""/>
+		                                                <driver license-nbr=""{4}""/>
+		                                                <truck-visit gos-tv-key=""{5}"" bat-nbr=""{6}""/>
+		                                                <timestamp>{7}</timestamp>
 	                                                </create-truck-visit>
                                                 </gate>";
         //
@@ -42,7 +41,7 @@ namespace WebApiConduceSinPapeles.Services
 	                                            <stage-done>
 		                                            <gate-id>{0}</gate-id>
 		                                            <stage-id>{1}</stage-id>
-		                                            <truck-visit tv-key=""{2}"" gos-tv-key=""{4}""/>
+		                                            <truck-visit tv-key=""{2}"" gos-tv-key=""{3}""/>
 	                                            </stage-done>
                                           </gate>";
 

@@ -26,7 +26,7 @@ namespace WebApiConduceSinPapeles.Controllers
             try
             {
                 NavisConnect service = new NavisConnect();
-                result = service.executeGenericInvokeCREATE_TRUCK_VISIT(param.GateId, param.StageId, param.LaneId, param.TruckingLicenseNbr, param.TruckingCoId, param.DriverLicenseNbr, param.GosTvKey, param.BatNbr, param.TimesTamp);
+                result = service.executeGenericInvokeCREATE_TRUCK_VISIT(param.GateId, param.StageId,param.TruckingLicenseNbr, param.TruckingCoId, param.DriverLicenseNbr, param.GosTvKey, param.BatNbr, param.TimesTamp);
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace WebApiConduceSinPapeles.Controllers
             try
             {
                 NavisConnect service = new NavisConnect();
-                result = service.executeGenericInvokeSUBMIT_TRANSACTION(param.TvKey, param.GosTvKey, param.EqId, param.IsoType, param.OnChassisId);
+                result = service.executeGenericInvokeSUBMIT_TRANSACTION(param.GateId, param.StageId, param.TvKey,param.EqId, param.IsoType, param.OnChassisId);
             }
             catch (Exception ex)
             {
@@ -94,7 +94,7 @@ namespace WebApiConduceSinPapeles.Controllers
         //POST: api/Stage_Done
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [System.Web.Http.HttpPost]
-        public IHttpActionResult Stage_Done([FromBody]DataParamTruckVisit param)
+        public IHttpActionResult Stage_Done([FromBody]DataParamStageDone param)
         {
 
             String result = String.Empty;
@@ -102,7 +102,7 @@ namespace WebApiConduceSinPapeles.Controllers
             try
             {
                 NavisConnect service = new NavisConnect();
-                result = service.executeGenericInvokeSTAGE_DONE(param.GateId, param.StageId, param.LaneId, param.TruckingLicenseNbr, param.TruckingCoId, param.DriverLicenseNbr, param.GosTvKey, param.BatNbr, param.TimesTamp);
+                result = service.executeGenericInvokeSTAGE_DONE(param.GateId, param.StageId, param.TvKey, param.GosTvKey);
             }
             catch (Exception ex)
             {
